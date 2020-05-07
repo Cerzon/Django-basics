@@ -264,12 +264,12 @@ main h2 {
   color: #212121;
   text-align: center;
 }
-.user-box figure {
+.user-box figure.userpic {
   margin-bottom: 2em;
   text-align: center;
   height: 6em;
 }
-.user-box figure img {
+.user-box figure.userpic img {
   width: 6em;
   border-radius: 3em;
 }
@@ -277,18 +277,122 @@ main h2 {
   padding-left: 1em;
   padding-right: 1em;
 }
+#categories {
+  margin-bottom: 2em;
+  font-size: 1rem;
+}
+#categories h3 {
+  margin-bottom: 0.6em;
+  font-size: 1.5em;
+  font-weight: 100;
+  color: #212121;
+  text-transform: uppercase;
+  text-align: center;
+}
+#categories ul {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+#categories li {
+  display: block;
+  border-top: 1px solid #ebebeb;
+}
+#categories li:last-child {
+  border-bottom: 1px solid #ebebeb;
+}
+#categories a {
+  display: block;
+  padding: 0.7em 0 0.6em 0;
+  line-height: 1.5em;
+  color: #6c6c6c;
+  text-transform: uppercase;
+}
+#categories a:hover,
+#categories a.active {
+  color: #212121;
+}
 .product-box {
   position: relative;
+  height: 100%;
+  padding: 0 1.5em;
+  font-size: 1rem;
   background-color: #ffffff;
   border: 1px solid #ebebeb;
 }
-figure.productpic {
+.product-box h4 {
+  margin-bottom: 0.6em;
+  font-size: 1.5em;
+  font-weight: 100;
+  color: #212121;
+  text-align: center;
+}
+.product-box h5 {
+  font-size: 1em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: #6c6c6c;
+}
+.product-box figure.productpic {
+  margin: 1em auto;
   width: 90%;
   position: relative;
   text-align: center;
 }
-figure.productpic img {
+.product-box figure.productpic img {
   width: 100%;
+}
+.product-box p.description {
+  font-size: 0.9em;
+  margin-bottom: 1.5em;
+  color: #6c6c6c;
+}
+.product-box button {
+  display: block;
+  margin: 0 auto 1.5em auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  padding: 0.6em 1.1em;
+  color: #fbfbfb;
+  background-color: #a2a2a2;
+  border: 3px double #ebebeb;
+  border-radius: 0.5em;
+}
+.product-box button::before {
+  font-family: 'icomoon';
+  margin-right: 0.6em;
+}
+.product-box button:hover {
+  border-style: outset;
+}
+.product-box button:active {
+  border-style: inset;
+}
+.feedback {
+  padding-top: 0.6em;
+  margin-bottom: 2.5em;
+  font-size: 1rem;
+  border-top: 1px solid #ebebeb;
+}
+.feedback figure.userpic {
+  float: left;
+  margin: 0.6em 0.5em 0.2em 0;
+}
+.feedback figure.userpic img {
+  width: 3.2em;
+  height: 3.2em;
+  border-radius: 1.6em;
+}
+.feedback p.quotes {
+  font-size: 0.8em;
+  color: #6c6c6c;
+}
+.feedback::after {
+  content: "";
+  clear: both;
 }
 #page-footer {
   padding-top: 5em;
@@ -320,6 +424,18 @@ figure.productpic img {
 .col-6,
 .col-8,
 .col-12,
+.col-xl-1,
+.col-xl-2,
+.col-xl-3,
+.col-xl-4,
+.col-xl-5,
+.col-xl-6,
+.col-xl-7,
+.col-xl-8,
+.col-xl-9,
+.col-xl-10,
+.col-xl-11,
+.col-xl-12,
 .col-lg-1,
 .col-lg-2,
 .col-lg-3,
@@ -617,5 +733,67 @@ figure.productpic img {
   .order-lg-3 {
     -ms-flex-order: 3;
     order: 3;
+  }
+}
+@media (min-width: 1200px) {
+  .col-xl-1 {
+    -ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+  }
+  .col-xl-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+  .col-xl-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-xl-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-xl-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+  .col-xl-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-xl-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+  .col-xl-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  .col-xl-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-xl-10 {
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+  .col-xl-11 {
+    -ms-flex: 0 0 91.666667%;
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%;
+  }
+  .col-xl-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
