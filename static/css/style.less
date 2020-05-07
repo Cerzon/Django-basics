@@ -314,7 +314,7 @@ main {
 
 .feedback {
     padding-top: 0.6em;
-    margin-bottom: 1.8em;
+    margin-bottom: 1.4em;
     font-size: 1rem;
     border-top: 1px solid #ebebeb;
     figure.userpic {
@@ -336,6 +336,36 @@ main {
     display: table;
     content: "";
     clear: both;
+}
+
+p.icon-location-pin, a.icon-mail {
+    margin-bottom: 1.2em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+p.icon-location-pin {
+    font-weight: 100;
+    color: #212121;
+}
+
+a.icon-mail {
+    font-weight: 400;
+    color: #6c6c6c;
+}
+
+p.icon-location-pin::before, a.icon-mail::before {
+    font-family: 'icomoon';
+    font-size: 1.2em;
+    margin-right: 0.3em;
+    color: #212121;
+}
+
+#g-map {
+    border: 1px solid #bcbcbc;
 }
 
 #page-footer {
