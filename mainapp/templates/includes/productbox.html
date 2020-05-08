@@ -1,0 +1,23 @@
+{% load static %}
+
+{% autoescape off %}
+<div class="col-12 col-lg-6 col-xl-4">
+    <section class="product-box">
+        <figure class="productpic"><img src="{% static object.image %}" alt="{{ object.name }}"></figure>
+        <h4>{{ object.name }}</h4>
+        <p class="description">{{ object.description }}</p>
+        <button class="icon-shopping-bag">Купить</button>
+        <h5>Отзывы:</h5>
+        {% for author in object.feedback %}
+            <div class="feedback">
+                <figure class="userpic"><img src="{% static author.image %}" alt="{{ author.name }}"></figure>
+                <p class="quotes">{{ author.quote }}</p>
+            </div>
+        {% empty %}
+            <div class="feedback">
+                Отзывов пока нет.
+            </div>
+        {% endfor %}
+    </section>
+</div>
+{% endautoescape %}

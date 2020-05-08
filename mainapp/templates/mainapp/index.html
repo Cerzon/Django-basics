@@ -1,66 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Глагне</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <header id="page-header" class="index-page">
-        <div id="top-ribbon">
-            <div class="container">
-                <div id="logo-place"></div>
-                <nav id="top-menu">
-                    <a href="/" class="top-menu-item active">Главная</a>
-                    <a href="/products/" class="top-menu-item">Каталог</a>
-                    <a href="/contacts/" class="top-menu-item">Контакты</a>
-                </nav>
-            </div>
-        </div>
-        <div class="container">
-            <h1>Рога и Копыта</h1>
-            <p class="quotes">В нашей обширной стране обыкновенный автомобиль, предназначенный, по мысли пешеходов, для мирной перевозки людей и грузов, принял грозные очертания братоубийственного снаряда.</p>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <h2>Команда профессионалов</h2>
-            <div class="grid">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <section class="user-box">
-                        <h3>Учредитель</h3>
-                        <h4>Бендер Остап Ибрагимович</h4>
-                        <figure class="userpic"><img src="/static/img/up_bender.jpg" alt="Бендер О.И."></figure>
-                        <p class="quotes">Вы не в церкви, вас не обманут. Будет и задаток. С течением времени.</p>
-                    </section>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <section class="user-box">
-                        <h3>Уполномоченный по копытам</h3>
-                        <h4>Шура Балаганов</h4>
-                        <figure class="userpic"><img src="/static/img/up_balag.jpg" alt="Балаганов А."></figure>
-                        <p class="quotes">Три часа уже пилю, а оно всё ещё не золотое.</p>
-                    </section>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <section class="user-box">
-                        <h3>Курьер</h3>
-                        <h4>Паниковский Михаил Самуэлевич</h4>
-                        <figure class="userpic"><img src="/static/img/up_panik.jpg" alt="Паниковский М.С."></figure>
-                        <p class="quotes">Я всех вас переживу. Вы не знаете Паниковского. Паниковский вас всех продаст, купит и снова продаст, но уже дороже.</p>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer id="page-footer">
-        <div class="container">
-            <div class="grid">
-                <div class="col-12 col-md-6 order-md-2" id="terms-conditions"><a href="#">Термины и определения</a></div>
-                <div class="col-12 col-md-6 order-md-1" id="copyleft">&copy;&#160;Все права нарушены</div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_content %}
+    <div class="grid">
+    {% for object in object_list %}
+        {% include 'includes/userbox.html' %}
+    {% endfor %}
+    </div>
+{% endblock page_content %}
