@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block page_content %}
-    <div class="grid">
+<div class="grid">
     {% for object in object_list %}
+        <div class="col-12 col-md-6 col-lg-4">
         {% include 'includes/userbox.html' %}
+        </div>
     {% endfor %}
-    </div>
+</div>
 {% endblock page_content %}

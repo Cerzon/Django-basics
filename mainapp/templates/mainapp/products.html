@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block page_content %}
-    <div class="grid">
-        <div class="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-3">
-            <aside id="categories">
-                <h3>Категории</h3>
-                <ul>
-                    <li><a href="#">Все товары</a></li>
-                    <li><a href="#">Спортивный инвентарь</a></li>
-                    <li><a href="#">Средства индивидуальной защиты</a></li>
-                    <li><a href="#">Товары для творчества</a></li>
-                    <li><a href="#">Канцелярские товары</a></li>
-                </ul>
-            </aside>
-        </div>
-        <div class="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-9">
-            <div class="grid">
-            {% for object in object_list %}
-                {% include 'includes/productbox.html' %}
-            {% endfor %}
+<div class="grid">
+    <div class="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-3">
+        <aside id="categories">
+            <h3>Категории</h3>
+            <ul>
+                <li><a href="#">Все товары</a></li>
+                <li><a href="#">Спортивный инвентарь</a></li>
+                <li><a href="#">Средства индивидуальной защиты</a></li>
+                <li><a href="#">Товары для творчества</a></li>
+                <li><a href="#">Канцелярские товары</a></li>
+            </ul>
+        </aside>
+    </div>
+    <div class="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-9">
+        <div class="grid">
+        {% for object in object_list %}
+            <div class="col-12 col-lg-6 col-xl-4">
+            {% include 'includes/productbox.html' %}
             </div>
+        {% endfor %}
         </div>
     </div>
+</div>
 {% endblock page_content %}
