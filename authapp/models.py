@@ -7,7 +7,7 @@ class HoHooUser(AbstractUser):
     userpic = models.ImageField(upload_to='userpic/', blank=True, verbose_name='аватар')
     middle_name = models.CharField(max_length=100, blank=True, verbose_name='отчество')
     occupation = models.CharField(max_length=60, blank=True, verbose_name='должность')
-    public = models.BooleanField(default=True)
+    public = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'пользователь'
