@@ -1,9 +1,6 @@
-import os
-import json
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.conf import settings
 from authapp.models import HoHooUser
 from quotesapp.models import UserQuote
 from .models import Category, Product

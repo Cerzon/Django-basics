@@ -8,7 +8,10 @@ class UserQuote(models.Model):
     author = models.ForeignKey(HoHooUser, on_delete=models.CASCADE, related_name='quotes')
     text = models.TextField(verbose_name='текст')
     header = models.BooleanField(default=False)
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name='feedback')
+    product = models.ForeignKey(
+        Product, on_delete=models.SET_NULL,
+        null=True, related_name='feedback'
+    )
 
     class Meta:
         ordering = ('author',)
