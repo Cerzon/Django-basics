@@ -1,7 +1,12 @@
 import os
 import json
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.conf import settings
+from authapp.models import HoHooUser
+from quotesapp.models import UserQuote
+from .models import Category, Product
 # from django.views.generic import ListView, DetailView
 
 # Create your views here.
@@ -12,39 +17,48 @@ from django.conf import settings
 def index(request):
     context = {
         'page_title': 'Главная',
-        'header_quote': 'В нашей обширной стране обыкновенный автомобиль, предназначенный, по мысли пешеходов, для мирной перевозки людей и грузов, принял грозные очертания братоубийственного снаряда.',
         'content_header': 'Команда профессионалов',
     }
-    with open(os.path.join(settings.BASE_DIR, 'mainapp', 'data', 'staff.json'), 'r', encoding='utf-8') as data_file:
-        try:
-            staff = json.load(data_file)['staff']
-        except json.JSONDecodeError:
-            staff = None
+    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
+    staff = HoHooUser.objects.filter(public=True)
     if staff:
         context['object_list'] = staff
     return render(request, 'mainapp/index.html', context)
 
 
-def products(request):
+def products(request, category=None):
     context = {
         'page_title': 'Каталог',
-        'header_quote': 'Финансовая пропасть – самая глубокая из всех пропастей, в нее можно падать всю жизнь.',
         'content_header': 'Каталог товаров',
     }
-    with open(os.path.join(settings.BASE_DIR, 'mainapp', 'data', 'products.json'), 'r', encoding='utf-8') as data_file:
-        try:
-            goods = json.load(data_file)['products']
-        except json.JSONDecodeError:
-            goods = None
+    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
+    context['category_list'] = Category.objects.all()
+    goods = Product.objects.all().select_related()
+    if category:
+        goods = goods.filter(category__slug=category)
     if goods:
         context['object_list'] = goods
     return render(request, 'mainapp/products.html', context)
 
 
+def product_detail(request, category, product):
+    try:
+        obj = Product.objects.get(slug=product, category__slug=category)
+    except Product.DoesNotExist:
+        return HttpResponseRedirect(reverse('mainapp:catalog:index'))
+    context = {
+        'content_header': 'Страница товара'
+    }
+    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
+    context['page_title'] = 'Товар - {}'.format(obj.name)
+    context['object'] = obj
+    return render(request, 'mainapp/product_detail.html', context)
+
+
 def contacts(request):
     context = {
         'page_title': 'Контакты',
-        'header_quote': 'Параллельно большому миру, в котором живут большие люди и большие вещи, существует маленький мир с маленькими людьми и маленькими вещами. В большом мире людьми двигает стремление облагодетельствовать человечество. Маленький мир далёк от таких высоких материй. У его обитателей стремление одно — как-нибудь прожить, не испытывая чувства голода.',
         'content_header': 'Наши контакты',
     }
+    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
     return render(request, 'mainapp/contacts.html', context)

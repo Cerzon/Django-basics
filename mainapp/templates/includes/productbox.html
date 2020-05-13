@@ -1,14 +1,18 @@
-{% load static %}
 <section class="product-box">
-    <figure class="productpic"><img src="{% static object.image %}" alt="{{ object.name }}"></figure>
-    <h4>{{ object.name }}</h4>
+    <figure class="productpic">
+        <a href="{{ object.get_absolute_url }}">
+            <img src="{{ object.image.url }}" alt="{{ object.name }}">
+        </a>
+    </figure>
+    <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>
     <p class="description">{{ object.description|safe }}</p>
+    <p class="price">{{ object.price }}</p>
     <button class="icon-shopping-bag">Купить</button>
-    <h5>Отзывы ({{ object.feedback|length }}):</h5>
-    {% for author in object.feedback %}
+    <h5>Отзывы ({{ object.feedback.all|length }}):</h5>
+    {% for quote in object.feedback.all %}
         <div class="feedback">
-            <figure class="userpic"><img src="{% static author.image %}" alt="{{ author.name }}"></figure>
-            <p class="quotes">{{ author.quote|safe }}</p>
+            <figure class="userpic"><img src="{{ quote.author.userpic.url }}" alt="{{ quote.author.short_name }}"></figure>
+            <p class="quotes">{{ quote.text|safe }}</p>
         </div>
     {% empty %}
         <div class="feedback">

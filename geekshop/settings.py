@@ -31,7 +31,7 @@ SECRET_KEY = conf_parser.get('keys', 'SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = conf_parser.getboolean('common', 'DEBUG', fallback=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = literal_eval(conf_parser.get('common', 'ALLOWED_HOSTS', fallback='[]'))
 
 
 # Application definition
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
+    'authapp.apps.AuthappConfig',
+    'quotesapp.apps.QuotesappConfig',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +94,9 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'authapp.HoHooUser'
+
+LOGIN_URL = '/user/login/'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -142,3 +147,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ADMINS = literal_eval(conf_parser.get('mail', 'ADMINS', fallback='[]'))
 
 MANAGERS = literal_eval(conf_parser.get('mail', 'MANAGERS', fallback='[]'))
+
+# Some other stuff
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880
+FIRST_DAY_OF_WEEK = 1
+SECURE_SSL_REDIRECT = False
+SITE_ID = 1

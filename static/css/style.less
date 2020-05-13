@@ -182,6 +182,12 @@ main {
     }
 }
 
+.hwc {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+}
+
 .user-box {
     padding: 1.8em 1em;
     height: 100%;
@@ -285,8 +291,25 @@ main {
     }
     p.description {
         font-size: 0.9em;
-        margin-bottom: 1.5em;
+        margin-bottom: 1.2em;
         color: #6c6c6c;
+    }
+    p.price {
+        margin-bottom: 0.5em;
+        font-size: 1.4em;
+        font-weight: 100;
+        color: #212121;
+    }
+    p.price::before {
+        content: "Цена:";
+        margin-right: 0.5em;
+        font-size: 0.7em;
+        font-weight: 400;
+        color: #6c6c6c;
+    }
+    p.price::after {
+        content: "\20BD";
+        margin-left: 0.3em;
     }
     button {
         display: block;

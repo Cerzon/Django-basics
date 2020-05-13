@@ -1,5 +1,5 @@
 <nav id="top-menu">
     <a href="{% url 'mainapp:index' %}" class="top-menu-item{% if request.resolver_match.namespace == 'mainapp' and request.resolver_match.url_name == 'index' %} active{% endif %}">Главная</a>
-    <a href="{% url 'mainapp:products' %}" class="top-menu-item{% if request.resolver_match.namespace == 'mainapp' and request.resolver_match.url_name == 'products' %} active{% endif %}">Каталог</a>
+    <a href="{% url 'mainapp:catalog:index' %}" class="top-menu-item{% if request.resolver_match.namespace == 'mainapp:catalog' %} active{% endif %}">Каталог</a>
     <a href="{% url 'mainapp:contacts' %}" class="top-menu-item{% if request.resolver_match.namespace == 'mainapp' and request.resolver_match.url_name == 'contacts' %} active{% endif %}">Контакты</a>
 </nav>
