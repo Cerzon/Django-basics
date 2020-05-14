@@ -1,3 +1,6 @@
+"""
+Скрипт для добавления данных в БД проекта
+"""
 import os
 import json
 from django.core.management.base import BaseCommand
@@ -12,7 +15,8 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        with open(os.path.join(settings.MEDIA_ROOT, 'data', options['data']), 'r', encoding='utf-8') as data_file:
+        inp_data = os.path.join(settings.MEDIA_ROOT, 'data', options['data'])
+        with open(inp_data, 'r', encoding='utf-8') as data_file:
             try:
                 inp_data = json.load(data_file)
                 init_data = inp_data['init']
@@ -42,3 +46,4 @@ class Command(BaseCommand):
             new_obj, inp_data = model.objects.get_or_create(**obj)
             if inp_data:
                 new_obj.save()
+                
