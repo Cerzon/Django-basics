@@ -11,7 +11,7 @@
     <h5>Отзывы ({{ object.feedback.all|length }}):</h5>
     {% for quote in object.feedback.all %}
         <div class="feedback">
-            <figure class="userpic"><img src="{{ quote.author.userpic.url }}" alt="{{ quote.author.short_name }}"></figure>
+            <figure class="userpic"><img src="{% if quote.author.userpic %}{{ quote.author.userpic.url }}{% else %}/media/userpic/no_ava.png{% endif %}" alt="{{ quote.author.short_name }}"></figure>
             <p class="quotes">{{ quote.text|safe }}</p>
         </div>
     {% empty %}

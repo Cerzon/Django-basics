@@ -3,7 +3,7 @@
 {% block page_content %}
 <div class="hwc">
     <div class="user-profile">
-        <figure class="userpic"><img src="{% if object.userpic %}{{ object.userpic.url}}{% else %}/media/userpic/no_ava.png{% endif %}" alt="Аватар"></figure>
+        <figure class="userpic"><img src="{% if object.userpic %}{{ object.userpic.url }}{% else %}/media/userpic/no_ava.png{% endif %}" alt="Аватар"></figure>
         <h3>{{ object.username }}</h3>
         <h4>{{ object.full_name }}</h4>
     </div>
