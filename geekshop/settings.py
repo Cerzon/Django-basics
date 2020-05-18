@@ -19,19 +19,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Create RawConfigParser instance and read a conf file with all that
 # secret and critical settings shit
-conf_parser = RawConfigParser()
-conf_parser.read(os.path.join(BASE_DIR, 'conf', 'local.conf'))
+CONF_PARSER = RawConfigParser()
+CONF_PARSER.read(os.path.join(BASE_DIR, 'conf', 'local.conf'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = conf_parser.get('keys', 'SECRET_KEY')
+SECRET_KEY = CONF_PARSER.get('keys', 'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = conf_parser.getboolean('common', 'DEBUG', fallback=False)
+DEBUG = CONF_PARSER.getboolean('common', 'DEBUG', fallback=False)
 
-ALLOWED_HOSTS = literal_eval(conf_parser.get('common', 'ALLOWED_HOSTS', fallback='[]'))
+ALLOWED_HOSTS = literal_eval(CONF_PARSER.get('common', 'ALLOWED_HOSTS', fallback='[]'))
 
 
 # Application definition
@@ -84,13 +84,13 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': conf_parser.get('db', 'ENGINE', fallback='django.db.backends.sqlite3'),
-        'NAME': conf_parser.get('db', 'NAME', fallback=os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': conf_parser.get('db', 'USER', fallback=''),
-        'PASSWORD': conf_parser.get('db', 'PASSWORD', fallback=''),
-        'HOST': conf_parser.get('db', 'HOST', fallback=''),
-        'PORT': conf_parser.get('db', 'PORT', fallback=''),
-        'OPTIONS': literal_eval(conf_parser.get('db', 'OPTIONS', fallback='{}')),
+        'ENGINE': CONF_PARSER.get('db', 'ENGINE', fallback='django.db.backends.sqlite3'),
+        'NAME': CONF_PARSER.get('db', 'NAME', fallback=os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': CONF_PARSER.get('db', 'USER', fallback=''),
+        'PASSWORD': CONF_PARSER.get('db', 'PASSWORD', fallback=''),
+        'HOST': CONF_PARSER.get('db', 'HOST', fallback=''),
+        'PORT': CONF_PARSER.get('db', 'PORT', fallback=''),
+        'OPTIONS': literal_eval(CONF_PARSER.get('db', 'OPTIONS', fallback='{}')),
     }
 }
 
@@ -144,9 +144,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Mail stuff
 
-ADMINS = literal_eval(conf_parser.get('mail', 'ADMINS', fallback='[]'))
+ADMINS = literal_eval(CONF_PARSER.get('mail', 'ADMINS', fallback='[]'))
 
-MANAGERS = literal_eval(conf_parser.get('mail', 'MANAGERS', fallback='[]'))
+MANAGERS = literal_eval(CONF_PARSER.get('mail', 'MANAGERS', fallback='[]'))
 
 # Some other stuff
 
