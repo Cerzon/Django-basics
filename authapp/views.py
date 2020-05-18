@@ -50,7 +50,6 @@ class UserProfileEditView(LoginRequiredMixin, UpdateView):
     template_name = 'authapp/user_update.html'
     form_class = UserUpdateForm
     success_url = reverse_lazy('authapp:index')
-    #model = HoHooUser
 
     def get_object(self, queryset=None):
         return HoHooUser.objects.get(username=self.request.user.username)
