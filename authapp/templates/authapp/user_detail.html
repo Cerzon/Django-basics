@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="hwc">
+    <div class="user-profile">
+        <figure class="userpic"><img src="{{ object.userpic.url|default:'/media/userpic/no_ava.png' }}" alt="Аватар"></figure>
+        <h3>{{ object.username }}</h3>
+        <h4>{{ object.full_name }}</h4>
+    </div>
+    <a href="{% url 'authapp:edit' request.user.pk %}">Редактировать профиль</a>
+</div>
+{% endblock page_content %}
+    
