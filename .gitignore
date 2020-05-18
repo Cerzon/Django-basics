@@ -4,7 +4,7 @@ __pycache__/
 *.pot
 *.log
 *.sqlite3
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
+#**/migrations/**
+#!**/migrations
+#!**/migrations/__init__.py
 #conf/
