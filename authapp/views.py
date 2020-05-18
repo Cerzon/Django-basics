@@ -16,6 +16,7 @@ def index(request):
     context = {'page_title': 'Профиль пользователя ' + request.user.username}
     context['content_header'] = context['page_title']
     context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
+    context['object'] = HoHooUser.objects.get(username=request.user.username)
     return render(request, 'authapp/user_detail.html', context)
 
 
