@@ -7,6 +7,6 @@
         <h3>{{ object.username }}</h3>
         <h4>{{ object.full_name }}</h4>
     </div>
-    <a href="{% url 'authapp:edit' request.user.pk %}">Редактировать профиль</a>
+    <a href="{% url 'authapp:edit' %}">Редактировать профиль</a>
 </div>
 {% endblock page_content %}
