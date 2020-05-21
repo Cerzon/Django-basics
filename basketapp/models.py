@@ -9,8 +9,7 @@ from mainapp.models import Product
 # Create your models here.
 
 class UserBasket(models.Model):
-    """ container for slots with product
-        links to user include anonymous
+    """ корзина юзера. может работать с анонимусом
     """
     STATE_CHOICES = (
         ('active', 'активная корзина',),
@@ -48,8 +47,7 @@ class UserBasket(models.Model):
 
     @cached_property
     def total(self):
-        """ return dictionary with basket info:
-            total cost, total slots, total items
+        """ возвращает словарь с суммарными данными о корзине
         """
         return self.slots.aggregate(
             cost=Sum(
@@ -61,7 +59,7 @@ class UserBasket(models.Model):
 
 
 class BasketSlot(models.Model):
-    """ slot links with particular product
+    """ товарные позиции корзины
     """
     basket = models.ForeignKey(
         UserBasket,
@@ -90,6 +88,6 @@ class BasketSlot(models.Model):
 
     @property
     def cost(self):
-        """ return slot cost
+        """ возвращает стоимость слота
         """
         return self.product.price * self.quantity
