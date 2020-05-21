@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('started', models.DateTimeField(auto_now_add=True, verbose_name='дата создания')),
-                ('state', models.CharField(choices=[('active', 'активная корзина'), ('chkout', 'оформлен заказ'), ('archiv', 'история заказов'), ('delete', 'корзина удалёна')], default='active', max_length=6, verbose_name='статус')),
+                ('state', models.CharField(choices=[('active', 'активная корзина'), ('chkout', 'оформлен заказ'), ('archiv', 'история заказов'), ('delete', 'корзина удалена')], default='active', max_length=6, verbose_name='статус')),
                 ('customer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='baskets', to=settings.AUTH_USER_MODEL, verbose_name='покупатель')),
             ],
             options={

@@ -15,7 +15,7 @@ class UserBasket(models.Model):
         ('active', 'активная корзина',),
         ('chkout', 'оформлен заказ',),
         ('archiv', 'история заказов',),
-        ('delete', 'корзина удалёна',),
+        ('delete', 'корзина удалена',),
     )
     started = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
     customer = models.ForeignKey(
