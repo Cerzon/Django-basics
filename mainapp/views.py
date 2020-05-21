@@ -1,8 +1,9 @@
+""" mainapp views
+"""
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from authapp.models import HoHooUser
-from quotesapp.models import UserQuote
 from .models import Category, Product
 # from django.views.generic import ListView, DetailView
 
@@ -12,11 +13,12 @@ from .models import Category, Product
 #     template_name = 'mainapp/index.html'
 
 def index(request):
+    """ main page view
+    """
     context = {
         'page_title': 'Главная',
         'content_header': 'Команда профессионалов',
     }
-    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
     staff = HoHooUser.objects.filter(public=True)
     if staff:
         context['object_list'] = staff
@@ -24,11 +26,12 @@ def index(request):
 
 
 def products(request, category=None):
+    """ product catalog view
+    """
     context = {
         'page_title': 'Каталог',
         'content_header': 'Каталог товаров',
     }
-    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
     context['category_list'] = Category.objects.all()
     goods = Product.objects.all().select_related()
     if category:
@@ -39,6 +42,8 @@ def products(request, category=None):
 
 
 def product_detail(request, category, product):
+    """ product details view
+    """
     try:
         obj = Product.objects.get(slug=product, category__slug=category)
     except Product.DoesNotExist:
@@ -46,16 +51,16 @@ def product_detail(request, category, product):
     context = {
         'content_header': 'Страница товара'
     }
-    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
     context['page_title'] = 'Товар - {}'.format(obj.name)
     context['object'] = obj
     return render(request, 'mainapp/product_detail.html', context)
 
 
 def contacts(request):
+    """ contacts page view
+    """
     context = {
         'page_title': 'Контакты',
         'content_header': 'Наши контакты',
     }
-    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
     return render(request, 'mainapp/contacts.html', context)

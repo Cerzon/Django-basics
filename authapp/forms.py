@@ -1,5 +1,4 @@
-"""
-forms for register, update and login user
+""" forms for register, update and login user
 """
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django import forms

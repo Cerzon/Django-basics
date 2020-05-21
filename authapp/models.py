@@ -1,9 +1,13 @@
+""" authapp models
+"""
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 class HoHooUser(AbstractUser):
+    """ project User Model
+    """
     userpic = models.ImageField(upload_to='userpic/', blank=True, verbose_name='аватар')
     middle_name = models.CharField(max_length=100, blank=True, verbose_name='отчество')
     occupation = models.CharField(max_length=60, blank=True, verbose_name='должность')

@@ -1,3 +1,5 @@
+""" mainapp URL Configuration
+"""
 from django.urls import path, include
 from mainapp import views as mainapp
 

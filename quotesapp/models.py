@@ -1,3 +1,5 @@
+""" quotesapp model
+"""
 from django.db import models
 from authapp.models import HoHooUser
 from mainapp.models import Product
@@ -5,6 +7,8 @@ from mainapp.models import Product
 # Create your models here.
 
 class UserQuote(models.Model):
+    """ model contains user quotes and feedback for products
+    """
     author = models.ForeignKey(HoHooUser, on_delete=models.CASCADE, related_name='quotes')
     text = models.TextField(verbose_name='текст')
     header = models.BooleanField(default=False)

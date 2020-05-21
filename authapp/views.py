@@ -1,3 +1,5 @@
+""" authapp views
+"""
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -5,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import FormView, UpdateView, CreateView
-from quotesapp.models import UserQuote
 from .models import HoHooUser
 from .forms import UserRegisterForm, UserLoginForm, UserUpdateForm
 
@@ -13,14 +14,17 @@ from .forms import UserRegisterForm, UserLoginForm, UserUpdateForm
 
 @login_required
 def index(request):
+    """ user profile view
+    """
     context = {'page_title': 'Профиль пользователя ' + request.user.username}
     context['content_header'] = context['page_title']
-    context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
     context['object'] = HoHooUser.objects.get(username=request.user.username)
     return render(request, 'authapp/user_detail.html', context)
 
 
 class UserLoginView(FormView):
+    """ user login view
+    """
     template_name = 'authapp/login.html'
     form_class = UserLoginForm
     success_url = reverse_lazy('authapp:index')
@@ -29,7 +33,6 @@ class UserLoginView(FormView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'Авторизация'
         context['content_header'] = 'Вход для зарегистрированных пользователей'
-        context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
         return context
 
     def form_valid(self, form):
@@ -42,11 +45,15 @@ class UserLoginView(FormView):
 
 
 def user_logout(request):
+    """ user logout
+    """
     logout(request)
     return HttpResponseRedirect(reverse('mainapp:index'))
 
 
 class UserProfileEditView(LoginRequiredMixin, UpdateView):
+    """ user profile edit view
+    """
     template_name = 'authapp/user_update.html'
     form_class = UserUpdateForm
     success_url = reverse_lazy('authapp:index')
@@ -58,11 +65,12 @@ class UserProfileEditView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'Редактирование данных пользователя ' + self.request.user.username
         context['content_header'] = context['page_title']
-        context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
         return context
 
 
 class UserRegisterView(CreateView):
+    """ new user registration view
+    """
     template_name = 'authapp/signup.html'
     form_class = UserRegisterForm
     success_url = reverse_lazy('authapp:index')
@@ -71,7 +79,6 @@ class UserRegisterView(CreateView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'Регистрация'
         context['content_header'] = 'Регистрация нового пользователя'
-        context['header_quote'] = UserQuote.objects.filter(header=True).order_by('?')[0]
         return context
 
     def get_success_url(self):
