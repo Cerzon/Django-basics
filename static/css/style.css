@@ -497,16 +497,44 @@ main h2 {
   height: 100%;
   top: 105%;
   box-sizing: border-box;
-  font-size: 0.9em;
   padding: 1.8em;
-  background-color: rgba(255, 255, 255, 0.5);
+  padding-top: 15%;
+  background-color: rgba(255, 255, 255, 0.9);
   border: 1px solid #bcbcbc;
   transition-property: top;
   transition-duration: 0.4s;
   transition-timing-function: ease;
 }
+.product-promo .promo-cover a.round-button {
+  font-size: 1.4em;
+  margin-bottom: 0.6em;
+}
+.product-promo .promo-cover h4 {
+  font-size: 1.4em;
+  margin-bottom: 0.6em;
+  font-weight: 100;
+  text-align: center;
+}
+.product-promo .promo-cover .description {
+  font-size: 0.8em;
+  line-height: 1.6em;
+  color: #6c6c6c;
+}
 .product-promo:hover .promo-cover {
   top: 0;
+}
+a.round-button {
+  display: block;
+  text-align: center;
+}
+.round-button-content {
+  display: inline-block;
+  background-color: #fbfbfb;
+  color: #6c6c6c;
+  line-height: 1.8em;
+  width: 1.8em;
+  border-radius: 1em;
+  box-shadow: 0 0.1em 0.2em 0 #212121;
 }
 label {
   color: #6c6c6c;
