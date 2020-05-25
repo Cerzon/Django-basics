@@ -246,7 +246,7 @@ body {
 }
 #basket-informer {
   position: absolute;
-  display: block;
+  display: none;
   font-size: 0.7em;
   top: -0.2em;
   right: 0.2em;
@@ -273,11 +273,13 @@ main h2 {
   position: relative;
   width: 50%;
   margin: 0 auto;
+  margin-bottom: 3em;
 }
 .twc {
   position: relative;
   width: 30%;
   margin: 0 auto;
+  margin-bottom: 3em;
 }
 .user-box {
   padding: 1.8em 1em;
@@ -470,6 +472,41 @@ main h2 {
   display: table;
   content: "";
   clear: both;
+}
+.product-line {
+  margin-bottom: 4em;
+  border-bottom: 1px solid #ebebeb;
+}
+.product-line h3 {
+  margin-bottom: 1.2em;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #a2a2a2;
+}
+.product-promo {
+  position: relative;
+  font-size: 1rem;
+  overflow: hidden;
+}
+.product-promo img {
+  width: 100%;
+}
+.product-promo .promo-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 105%;
+  box-sizing: border-box;
+  font-size: 0.9em;
+  padding: 1.8em;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #bcbcbc;
+  transition-property: top;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+}
+.product-promo:hover .promo-cover {
+  top: 0;
 }
 label {
   color: #6c6c6c;

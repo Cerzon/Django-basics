@@ -49,13 +49,14 @@ class UserBasket(models.Model):
     def total(self):
         """ возвращает словарь с суммарными данными о корзине
         """
-        return self.slots.aggregate(
+        res = self.slots.aggregate(
             cost=Sum(
                 F('product__price') * F('quantity'),
                 output_field=models.DecimalField()),
             slots=Count('pk'),
             items=Sum('quantity')
         )
+        return {key: value or 0 for key, value in res.items()}
 
 
 class BasketSlot(models.Model):

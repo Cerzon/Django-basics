@@ -26,7 +26,7 @@ class Product(models.Model):
     """
     slug = models.SlugField(max_length=30, verbose_name='имя для URL')
     name = models.CharField(max_length=120, verbose_name='название')
-    image = models.ImageField(upload_to='product_img', verbose_name='фото товара')
+    image = models.ImageField(upload_to='product_img', blank=True, verbose_name='фото товара')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     description = models.TextField(verbose_name='описание')
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='цена')

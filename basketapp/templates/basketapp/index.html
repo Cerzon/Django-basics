@@ -19,3 +19,8 @@
 </div>
 {% endif %}
 {% endblock page_content %}
+
+{% load static %}
+{% block scripts %}
+<script src="{% static 'js/basket_controls.js' %}"></script>
+{% endblock scripts %}

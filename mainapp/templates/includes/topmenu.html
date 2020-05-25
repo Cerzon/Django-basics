@@ -10,7 +10,7 @@
     {% endif %}
     <a href="{% url 'basketapp:index' %}" class="top-menu-item{% if request.resolver_match.namespace == 'basketapp' and request.resolver_match.url_name == 'index' %} active{% endif %}">
         <i class="icon-shopping-cart"></i>Корзинко
-        {% if basket.total.slots %}<span id="basket-informer">{{ basket.total.slots }}</span>{% endif %}
+        <span id="basket-informer"{% if basket.total.slots %} style="display: block;"{% endif %}>{{ basket.total.slots }}</span>
     </a>
     <a href="{% url 'mainapp:contacts' %}" class="top-menu-item{% if request.resolver_match.namespace == 'mainapp' and request.resolver_match.url_name == 'contacts' %} active{% endif %}">Контакты</a>
 </nav>

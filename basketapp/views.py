@@ -1,7 +1,7 @@
 """ basketapp views
 """
 from django.db.models import F
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from mainapp.models import Product
 from .models import UserBasket, BasketSlot
@@ -73,7 +73,7 @@ def add_product(request, product_id):
         slot.quantity = F('quantity') + 1
     slot.save()
     if request.is_ajax():
-        return HttpResponse(basket.total)
+        return JsonResponse(basket.total)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -94,7 +94,7 @@ def remove_product(request, product_id):
                 slot.quantity = F('quantity') - 1
                 slot.save()
         if request.is_ajax():
-            return HttpResponse(basket.total)
+            return JsonResponse(basket.total)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -110,5 +110,5 @@ def delete_slot(request, slot_id):
         else:
             slot.delete()
         if request.is_ajax():
-            return HttpResponse(basket.total)
+            return JsonResponse(basket.total)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -1,7 +1,8 @@
 """ mainapp views
 """
-from django.shortcuts import render
+from django.db.models import Count
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 from authapp.models import HoHooUser
 from .models import Category, Product
@@ -38,6 +39,8 @@ def products(request, category=None):
         goods = goods.filter(category__slug=category)
     if goods:
         context['object_list'] = goods
+        context['popular'] = goods.annotate(
+            num=Count('slots')).order_by('num')[:4]
     return render(request, 'mainapp/products.html', context)
 
 
@@ -53,6 +56,8 @@ def product_detail(request, category, product):
     }
     context['page_title'] = 'Товар - {}'.format(obj.name)
     context['object'] = obj
+    context['recomend'] = Product.objects.filter(
+        category=obj.category).exclude(pk=obj.pk).order_by('?')[:4]
     return render(request, 'mainapp/product_detail.html', context)
 
 
