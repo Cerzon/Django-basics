@@ -2,7 +2,7 @@ function updateBasket(event) {
     event.stopPropagation();
     event.preventDefault();
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", event.target.getAttribute("href"), true);
+    xhr.open("GET", event.currentTarget.getAttribute("href"), true);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     const pageReload = function() {
         document.location.reload(true);

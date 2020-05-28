@@ -9,14 +9,12 @@
     <p class="price">{{ object.price }}</p>
     <a href="{% url 'basketapp:add_product' object.pk %}" class="basket-ctrl icon-shopping-bag">Купить</a>
     <h5>Отзывы ({{ object.feedback.all|length }}):</h5>
-    {% for quote in object.feedback.all %}
-        <div class="feedback">
-            <figure class="userpic"><img src="{% if quote.author.userpic %}{{ quote.author.userpic.url }}{% else %}/media/userpic/no_ava.png{% endif %}" alt="{{ quote.author.short_name }}"></figure>
-            <p class="quotes">{{ quote.text|safe }}</p>
-        </div>
-    {% empty %}
-        <div class="feedback">
-            Отзывов пока нет.
-        </div>
-    {% endfor %}
+    <div class="feedback">
+        {% for quote in object.feedback.all %}
+        <figure class="userpic"><img src="{% if quote.author.userpic %}{{ quote.author.userpic.url }}{% else %}/media/userpic/no_ava.png{% endif %}" alt="{{ quote.author.short_name }}"></figure>
+        <p class="quotes">{{ quote.text|safe }}</p>
+        {% empty %}
+        <p class="info-msg">Отзывов пока нет</p>
+        {% endfor %}
+    </div>
 </section>

@@ -16,12 +16,14 @@
         <div id="top-ribbon">
             <div class="container">
                 <div id="logo-place"></div>
-                {% include 'includes/topmenu.html' %}
+                {% include top_menu %}
             </div>
         </div>
         <div class="container">
-            <h1>Рога и Копыта</h1>
+            <h1>{{ site_name }}</h1>
+            {% if show_quote %}
             <p class="quotes">{{ header_quote.text|safe }}</p>
+            {% endif %}
         </div>
     </header>
     <main>

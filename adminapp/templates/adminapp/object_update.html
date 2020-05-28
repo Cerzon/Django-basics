@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <a href="{% url links.list.0 %}" class="button-link">{{ links.list.1 }}</a>
+    {% if request.resolver_match.url_name == 'update' %}
+    <a href="{% url links.delete.0 object.pk %}" class="button-link">{{ links.delete.1 }}</a>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{{ submit_label }}">
+    </form>
+{% endblock page_content %}
+    
+    

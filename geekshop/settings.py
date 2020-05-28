@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'quotesapp.apps.QuotesappConfig',
     'basketapp.apps.BasketappConfig',
+    'adminapp.apps.AdminappConfig',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
+                'mainapp.context_processors.site_set',
                 'quotesapp.context_processors.header_quote',
                 'basketapp.context_processors.user_basket',
             ],

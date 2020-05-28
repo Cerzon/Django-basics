@@ -14,12 +14,12 @@ function countTotal() {
 function updateBasket(event) {
     event.stopPropagation();
     event.preventDefault();
-    const slot = event.target.closest("div.basket-slot");
+    const slot = event.currentTarget.closest("div.basket-slot");
     const quantityField = slot.querySelector("div.quantity-box input");
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", event.target.getAttribute("href"), true);
+    xhr.open("GET", event.currentTarget.getAttribute("href"), true);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    switch(event.target.classList[1]){
+    switch(event.currentTarget.classList[1]){
         case "icon-circle-with-plus":
             quantityField.setAttribute("value", (parseInt(quantityField.getAttribute("value")) + 1).toString());
             break;
@@ -32,7 +32,7 @@ function updateBasket(event) {
             slot.remove();
             break;
         default:
-            console.warn(`Control link with unexpected class ${event.target.classList[1]}`);
+            console.warn(`Control link with unexpected class ${event.currentTarget.classList[1]}`);
             break;
     }
     const pageReload = function() {
@@ -42,8 +42,9 @@ function updateBasket(event) {
     xhr.onloadend = function() {
         if(xhr.status === 200) {
             const responseData = JSON.parse(xhr.response);
-            if(responseData.cost == basketTotal.cost && responseData.slots == basketTotal.slots &&
-                responseData.items == basketTotal.items) {
+            if(parseFloat(responseData.cost).toFixed(2) === basketTotal.cost.toFixed(2) &&
+                responseData.slots === basketTotal.slots &&
+                responseData.items === basketTotal.items) {
                 return;
             }
         }
