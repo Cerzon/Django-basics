@@ -13,6 +13,7 @@ class HoHooUser(AbstractUser):
     occupation = models.CharField(max_length=60, blank=True, verbose_name='должность')
     phone = models.CharField(max_length=20, blank=True, verbose_name='номер телефона')
     public = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True, verbose_name='аккаунт активен')
 
     class Meta:
         verbose_name = 'пользователь'
@@ -20,6 +21,10 @@ class HoHooUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     @property
     def full_name(self):
