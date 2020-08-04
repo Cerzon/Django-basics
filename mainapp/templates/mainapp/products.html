@@ -22,6 +22,17 @@
     </div>
     <div class="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-9">
         <div class="grid">
+        {% if paginated %}
+            <div class="paginator col-12">
+                {% if page_prev_url %}
+                <a href="{{ page_prev_url }}"><i class="icon-chevron-with-circle-left"></i></a>
+                {% endif %}
+                <p>Страница {{ object_list.number }} из {{ object_list.paginator.num_pages }}</p>
+                {% if page_next_url %}
+                <a href="{{ page_next_url }}"><i class="icon-chevron-with-circle-right"></i></a>
+                {% endif %}
+            </div>
+        {% endif %}
         {% for object in object_list %}
             <div class="col-12 col-lg-6 col-xl-4">
             {% include 'includes/productbox.html' %}
